@@ -306,7 +306,7 @@ function uploadFile(file, cardId) {
 
   xhr.onload = () => {
     if (xhr.status === 200 || xhr.status === 201) {
-      stEl.textContent = 'OK ✓';
+      stEl.textContent = 'RX ✓';
       stEl.className = 'file-status done';
       barEl.style.width = '100%';
       uploadedCount++;
