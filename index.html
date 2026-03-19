@@ -120,6 +120,18 @@
 
 <div id="toast"></div>
 
+ <div class="cookie-bar" id="cookieBar">
+  <div class="cookie-lights">
+    <span class="cookie-dot red"></span>
+    <span class="cookie-dot yellow"></span>
+    <span class="cookie-dot green"></span>
+  </div>
+  <p class="cookie-text">Yeah my app uses cookies to remember your session across visits. DW</p>
+  <div class="cookie-actions">
+    <button class="cookie-decline" onclick="declineCookies()">Decline</button>
+    <button class="cookie-accept" onclick="acceptCookies()">Accept</button>
+  </div>
+ </div>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="app.js"></script>
 </body>
