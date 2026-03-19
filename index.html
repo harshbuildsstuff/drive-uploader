@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DriveDrop — Interstellar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+<div class="nebula nebula-1"></div>
+<div class="nebula nebula-2"></div>
+<div class="nebula nebula-3"></div>
+
+<div class="app">
+
+  <header>
+    <div class="logo">
+      <div class="logo-icon">🛸</div>
+      <div class="logo-text">Drive<span>Drop</span></div>
+    </div>
+    <button id="authBtn" onclick="handleAuth()">Connect</button>
+  </header>
+
+  <div class="info-grid">
+    <div class="info-card panel">
+      <div class="info-label">Storage Used</div>
+      <div class="info-value accent" id="infoUsed">—</div>
+    </div>
+    <div class="info-card panel">
+      <div class="info-label">Free Space</div>
+      <div class="info-value green" id="infoFree">—</div>
+    </div>
+    <div class="info-card wide panel">
+      <div class="info-label">Capacity</div>
+      <div class="storage-bar-wrap"><div class="storage-bar-fill" id="storageBar" style="width:0%"></div></div>
+      <div class="storage-text" id="storageText">Awaiting connection…</div>
+    </div>
+  </div>
+
+  <div class="folder-bar panel">
+    <div class="folder-left">
+      <div class="folder-emoji">📡</div>
+      <div class="folder-info">
+        <div class="folder-label">Transmission Target</div>
+        <div class="folder-name" id="folderName">Connect to assign folder</div>
+      </div>
+    </div>
+    <button class="folder-change-btn" onclick="openFolderModal()">Reroute</button>
+  </div>
+
+  <div class="dropzone-wrapper">
+    <div id="dropzone" class="disabled"
+         ondragover="onDragOver(event)" ondragleave="onDragLeave()" ondrop="onDrop(event)"
+         onclick="document.getElementById('fileInput').click()">
+      <div class="warp-ring"></div>
+      <div class="warp-ring"></div>
+      <div class="warp-ring"></div>
+      <div class="drop-corner-tr"></div>
+      <div class="drop-corner-bl"></div>
+      <div class="drop-inner-glow"></div>
+      <div class="drop-icon">🌌</div>
+      <div class="drop-title">Initiate Transmission</div>
+      <div class="drop-sub">
+        Drop files to beam them to your Drive<br/>
+        <span class="drop-browse">or tap to select from device</span>
+      </div>
+      <input type="file" id="fileInput" multiple onchange="onFileSelect(event)"/>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card panel">
+      <div class="stat-label">Queued</div>
+      <div class="stat-dot-row">
+        <div class="stat-dot red"></div>
+        <div class="stat-value" id="statQueued">0</div>
+      </div>
+    </div>
+    <div class="stat-card panel">
+      <div class="stat-label">Beamed</div>
+      <div class="stat-dot-row">
+        <div class="stat-dot green"></div>
+        <div class="stat-value" id="statDone">0</div>
+      </div>
+    </div>
+    <div class="stat-card panel">
+      <div class="stat-label">Data</div>
+      <div class="stat-dot-row">
+        <div class="stat-dot yellow"></div>
+        <div class="stat-value" id="statSize">0 B</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="queue-wrapper hidden" id="queueWrapper">
+    <div class="queue-header">— Transmission Log —</div>
+    <div id="fileList"></div>
+  </div>
+
+</div>
+
+<div class="modal-overlay" id="folderModal" onclick="closeFolderModalOutside(event)">
+  <div class="modal">
+    <div class="modal-title">Select Transmission Target</div>
+    <div class="modal-sub">Create a new folder or pick an existing one in your Drive.</div>
+    <div class="modal-input-row">
+      <input class="modal-input" id="newFolderInput" type="text" placeholder="New folder name…"/>
+      <button class="modal-create-btn" onclick="createAndSelectFolder()">Create</button>
+    </div>
+    <div class="modal-divider">or existing</div>
+    <div class="folder-list" id="folderList">
+      <div class="folder-list-placeholder">Scanning Drive…</div>
+    </div>
+    <button class="modal-cancel" onclick="closeFolderModal()">Abort</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="app.js"></script>
+</body>
+</html>
