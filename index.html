@@ -23,7 +23,14 @@
     </div>
     <button id="authBtn" onclick="handleAuth()">Connect</button>
   </header>
-
+<div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('dashboard')">Dashboard</button>
+    <button class="tab-btn" onclick="switchTab('achievements')">
+      Achievements
+      <span class="tab-badge hidden" id="achievementBadge">0</span>
+    </button>
+</div>
+ <div id="tabDashboard" class="tab-content"> 
   <div class="info-grid">
     <div class="info-card panel">
       <div class="info-label">Storage Used</div>
@@ -39,7 +46,24 @@
       <div class="storage-text" id="storageText">Awaiting connection…</div>
     </div>
   </div>
-
+ </div>
+  <div id="tabAchievements" class="tab-content hidden">
+    <div class="achievements-header">
+      <div class="ach-title-row">
+        <div class="ach-main-title">Mission Logs</div>
+        <div class="ach-progress-pill" id="achProgressPill">0 / 0 Unlocked</div>
+      </div>
+      <div class="ach-progress-bar-wrap">
+        <div class="ach-progress-bar-fill" id="achProgressBar" style="width:0%"></div>
+      </div>
+    </div>
+    <div class="ach-category-label">Upload Milestones</div>
+    <div class="ach-grid" id="achGridMilestones"></div>
+    <div class="ach-category-label">Data Volume</div>
+    <div class="ach-grid" id="achGridData"></div>
+    <div class="ach-category-label">Fun & Quirky</div>
+    <div class="ach-grid" id="achGridFun"></div>
+  </div>
   <div class="folder-bar panel">
     <div class="folder-left">
       <div class="folder-emoji">📡</div>
@@ -119,6 +143,24 @@
   </div>
 </div>
 
+  <div class="achievement-unlock-overlay" id="achievementOverlay">
+  <div class="achievement-unlock-box">
+    <div class="aub-stars">
+      <div class="aub-star s1">✦</div>
+      <div class="aub-star s2">✦</div>
+      <div class="aub-star s3">✦</div>
+      <div class="aub-star s4">✦</div>
+      <div class="aub-star s5">✦</div>
+    </div>
+    <div class="aub-label">Achievement Unlocked</div>
+    <div class="aub-icon" id="aubIcon">🛸</div>
+    <div class="aub-name" id="aubName"></div>
+    <div class="aub-desc" id="aubDesc"></div>
+    <div class="aub-glow"></div>
+    <button class="aub-close" onclick="closeAchievementOverlay()">Continue Mission</button>
+  </div>
+  </div>
+  
 <div id="toast"></div>
 
  <div class="cookie-bar" id="cookieBar">
