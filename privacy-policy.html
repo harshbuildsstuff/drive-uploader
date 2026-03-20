@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy — DriveDrop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --space:   #01030d;
+      --nebula2: #0a2a6e;
+      --star:    #4a9eff;
+      --starlit: #7ec8ff;
+      --aurora:  #00d4ff;
+      --text:    #cde8ff;
+      --muted:   #4a7a9b;
+      --border:  rgba(74,158,255,0.15);
+      --glow-sm: rgba(74,158,255,0.25);
+      --glow-md: rgba(74,158,255,0.4);
+    }
+
+    html, body {
+      min-height: 100%;
+      background: var(--space);
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(74,158,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(74,158,255,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .nebula {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.3;
+    }
+
+    .nebula-1 {
+      width: 60vw; height: 60vw;
+      top: -10%; left: -10%;
+      background: radial-gradient(circle, #0d3a8a 0%, #03154a 50%, transparent 70%);
+    }
+
+    .nebula-2 {
+      width: 40vw; height: 40vw;
+      bottom: 5%; right: -5%;
+      background: radial-gradient(circle, #003d6b 0%, #001529 50%, transparent 70%);
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg, transparent, transparent 2px,
+        rgba(0,20,60,0.06) 2px, rgba(0,20,60,0.06) 4px
+      );
+    }
+
+    .page {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: fadeDown 0.7s ease both;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--nebula2), var(--star));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 20px var(--glow-md);
+      border: 1px solid rgba(74,158,255,0.3);
+    }
+
+    .logo-text {
+      font-family: 'Orbitron', monospace;
+      font-weight: 900;
+      font-size: 17px;
+      letter-spacing: 0.08em;
+      color: var(--starlit);
+      text-shadow: 0 0 20px var(--glow-md);
+    }
+
+    .logo-text span { color: var(--aurora); }
+
+    .back-link {
+      margin-left: auto;
+      font-family: 'Orbitron', monospace;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .back-link:hover {
+      color: var(--aurora);
+      border-color: var(--aurora);
+      box-shadow: 0 0 12px rgba(0,212,255,0.15);
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      animation: fadeUp 0.7s 0.1s ease both;
+      opacity: 0;
+    }
+
+    .hero-tag {
+      font-family: 'Orbitron', monospace;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--aurora);
+      border: 1px solid rgba(0,212,255,0.25);
+      border-radius: 99px;
+      padding: 4px 14px;
+      width: fit-content;
+    }
+
+    .hero-title {
+      font-family: 'Orbitron', monospace;
+      font-weight: 900;
+      font-size: clamp(26px, 5vw, 38px);
+      color: var(--starlit);
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      text-shadow: 0 0 30px var(--glow-md);
+    }
+
+    .hero-title span { color: var(--aurora); }
+
+    .hero-meta {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.8;
+      max-width: 560px;
+      opacity: 0.85;
+    }
+
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      animation: fadeUp 0.7s ease both;
+      opacity: 0;
+    }
+
+    .section:nth-child(3) { animation-delay: 0.15s; }
+    .section:nth-child(4) { animation-delay: 0.2s; }
+    .section:nth-child(5) { animation-delay: 0.25s; }
+    .section:nth-child(6) { animation-delay: 0.3s; }
+    .section:nth-child(7) { animation-delay: 0.35s; }
+    .section:nth-child(8) { animation-delay: 0.4s; }
+    .section:nth-child(9) { animation-delay: 0.45s; }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-num {
+      font-family: 'Orbitron', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--aurora);
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 4px;
+      padding: 3px 8px;
+      letter-spacing: 0.1em;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', monospace;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--starlit);
+      letter-spacing: 0.06em;
+    }
+
+    .section-body {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.9;
+      opacity: 0.8;
+      padding-left: 4px;
+    }
+
+    .section-body a {
+      color: var(--aurora);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .highlight-box {
+      background: linear-gradient(145deg, rgba(13,31,74,0.6), rgba(5,9,24,0.7));
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.8;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .highlight-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--star), transparent);
+      opacity: 0.4;
+    }
+
+    .highlight-box strong {
+      color: var(--starlit);
+      font-weight: 600;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    .footer {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      animation: fadeUp 0.7s 0.5s ease both;
+      opacity: 0;
+    }
+
+    .footer-text {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .footer-text a {
+      color: var(--aurora);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Orbitron', monospace;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--aurora);
+      background: linear-gradient(145deg, rgba(13,31,74,0.6), rgba(5,9,24,0.7));
+      border: 1px solid rgba(0,212,255,0.25);
+      border-radius: 10px;
+      padding: 12px 18px;
+      text-decoration: none;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-email::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--aurora), transparent);
+      opacity: 0.4;
+    }
+
+    .contact-email:hover {
+      border-color: var(--aurora);
+      box-shadow: 0 0 20px rgba(0,212,255,0.15);
+      background: linear-gradient(145deg, rgba(13,31,74,0.8), rgba(5,9,24,0.9));
+    }
+
+    .contact-email svg {
+      flex-shrink: 0;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+<div class="nebula nebula-1"></div>
+<div class="nebula nebula-2"></div>
+
+<div class="page">
+
+  <header class="site-header">
+    <div class="logo-icon">🛸</div>
+    <div class="logo-text">Drive<span>Drop</span></div>
+    <a class="back-link" href="index.html">← Back</a>
+  </header>
+
+  <div class="hero">
+    <div class="hero-tag">Legal Document</div>
+    <div class="hero-title">Privacy <span>Policy</span></div>
+    <div class="hero-meta">Last updated — June 2025</div>
+    <div class="hero-desc">
+      This page explains what DriveDrop does with your data when you use the app.
+      The short version — we don't collect, store, or share anything about you.
+      Read on for the full picture.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">01</div>
+      <div class="section-title">What DriveDrop Is</div>
+    </div>
+    <div class="section-body">
+      DriveDrop is a personal web app hosted on GitHub Pages. It lets you upload files from your device directly to your own Google Drive account. No backend server is involved — the app runs entirely in your browser and communicates with Google's servers on your behalf.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">02</div>
+      <div class="section-title">What Data We Access</div>
+    </div>
+    <div class="section-body">
+      When you sign in with Google, DriveDrop requests access to your Google Drive. This access is used for three things only — uploading files you choose, reading your storage quota to display how much space you have left, and listing your Drive folders so you can pick a destination. Nothing else is read, copied, or inspected.
+    </div>
+    <div class="highlight-box">
+      <strong>Your files never touch our servers.</strong> because there are no servers😄. Uploads go from your device straight to Google Drive , using your own access token.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">03</div>
+      <div class="section-title">What We Store Locally</div>
+    </div>
+    <div class="section-body">
+      DriveDrop stores a small amount of data in your browser's <code>localStorage</code>. This includes your cookie consent preference, your upload statistics (total files uploaded, total data sent), and any achievements you have unlocked. This data never leaves your device and is not sent anywhere.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">04</div>
+      <div class="section-title">What We Do Not Do</div>
+    </div>
+    <div class="section-body">
+      We do not collect your name, email address, or any personal details. We do not log your uploads or track which files you send. We do not sell, share, or transfer any information to third parties. We do not use analytics tools or advertising trackers of any kind.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">05</div>
+      <div class="section-title">Google OAuth and Permissions</div>
+    </div>
+    <div class="section-body">
+      Signing in uses Google's OAuth 2.0 system. The access token Google provides is stored in memory only for the duration of your session — it is gone the moment you close or refresh the page. DriveDrop uses the <code>drive</code> scope, which covers file uploads, storage quota, and folder listing. You can revoke this access at any time by visiting your <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google Account permissions page</a>.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">06</div>
+      <div class="section-title">Third Party Services</div>
+    </div>
+    <div class="section-body">
+      DriveDrop uses the following external services — Google Identity Services for authentication, the Google Drive API for file operations, and Google Fonts for typography. Each of these is governed by Google's own privacy policies. DriveDrop has no control over how Google processes data on its end.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">07</div>
+      <div class="section-title">Children's Privacy</div>
+    </div>
+    <div class="section-body">
+      DriveDrop is not directed at children under the age of 13. The app does not knowingly collect any data from minors. If you believe a minor has used this app and you have concerns, please reach out using the contact details below.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">08</div>
+      <div class="section-title">Changes to This Policy</div>
+    </div>
+    <div class="section-body">
+      If this privacy policy changes, the updated version will be posted at this URL with a revised date at the top. Continuing to use DriveDrop after a change is posted means you accept the updated terms.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">09</div>
+      <div class="section-title">Contact</div>
+    </div>
+    <div class="section-body">
+      If you have any questions or concerns about this privacy policy, send an email to the address below. You can expect a response within a few days.
+    </div>
+    <a class="contact-email" href="mailto:harshch2208t@gmail.com">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="4" width="20" height="16" rx="2"/>
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+      </svg>
+      harshch2208t@gmail.com
+    </a>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="footer">
+    <div class="footer-text">
+      DriveDrop is open source. Anyone can view the code, report issues, or contribute at <a href="https://github.com/harshbuildsstuff/drive-uploader" target="_blank" rel="noopener"> the GitHub repository</a>.
+    </div>
+    <div class="footer-text">
+      DriveDrop is not affiliated with or endorsed by Google LLC. Google Drive and Google One are trademarks of Google LLC.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
